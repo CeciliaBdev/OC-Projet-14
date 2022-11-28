@@ -18,10 +18,10 @@ function Accueil() {
           </h1>
           <div className="grid grid-cols-2  h-12 ">
             <div className=" h-full w-full  hover:border hover:bg-lime-400/50 flex justify-center items-center">
-              <Link to="/createUser">Create User</Link>
+              <Link to="/createEmployee">Create employee</Link>
             </div>
             <div className=" h-full w-full  hover:border hover:bg-lime-500/50 flex justify-center items-center">
-              <Link to="/listUsers"> List</Link>
+              <Link to="/listEmployees"> List employees</Link>
             </div>
           </div>
         </div>
