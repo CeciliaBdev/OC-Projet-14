@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo-HRNet.svg'
+
 function CreateEmployee() {
   return (
     <div className="bg-lime-400/20 h-screen w-screen ">
@@ -62,6 +63,16 @@ function CreateEmployee() {
         >
           Save
         </button>
+
+        {/* <button
+          className="openModalBtn"
+          onClick={() => {
+            setOpenModal(true)
+          }}
+        >
+          Open
+        </button>
+        {openModal && <Modal closeModal={setOpenModal} content={message} />} */}
 
         <div>
           <Link to="/listEmployees" className="">
