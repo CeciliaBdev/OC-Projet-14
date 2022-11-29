@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import logo from '../assets/logo-HRNet.svg'
+import { Modal } from '@ceciliabdev/react-modal'
 
 function CreateEmployee() {
+  const [openModal, setOpenModal] = useState(false)
+  const message = 'Contenu de la modale'
+
   return (
     <div className="bg-lime-400/20 h-screen w-screen ">
       <Link to="/" className="">
@@ -57,14 +62,8 @@ function CreateEmployee() {
             </div>
           </div>
         </form>
-        <button
-          type="button"
-          className="border border-solid m-5 px-8 py-3 rounded"
-        >
-          Save
-        </button>
 
-        {/* <button
+        <button
           className="openModalBtn"
           onClick={() => {
             setOpenModal(true)
@@ -72,7 +71,7 @@ function CreateEmployee() {
         >
           Open
         </button>
-        {openModal && <Modal closeModal={setOpenModal} content={message} />} */}
+        {openModal && <Modal closeModal={setOpenModal} content={message} />}
 
         <div>
           <Link to="/listEmployees" className="">
