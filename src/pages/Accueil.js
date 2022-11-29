@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import bg from '../assets/background.jpg'
+// import bg from '../assets/background.jpg'
 import logo from '../assets/logo-HRNet.svg'
 
 function Accueil() {
