@@ -10,7 +10,7 @@ function Accueil() {
         alt="backgound"
         className="opacity-10 h-screen w-screen object-cover relative"
       /> */}
-      <div className="bg-white w-1/3 h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-5">
+      <div className="bg-white w-2/3 h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-5">
         <div className="grid grid-rows-3  items-center h-full content-center  ">
           <img src={logo} alt="logo hrnet" className="w-24 mx-auto" />
           <h1 className="text-center text-lime-700 font-bold text-2xl">
