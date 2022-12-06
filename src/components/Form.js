@@ -10,8 +10,6 @@ import { addEmployee } from '../store/user'
 
 import { optionStates, optionDepartment } from '../Datas/datas'
 
-import * as Yup from 'yup'
-
 function FormHRnet() {
   const [openModal, setOpenModal] = useState(false)
   const message = `L' employé a bien été créé`
@@ -52,7 +50,7 @@ function FormHRnet() {
 
     // A faire :
     // vider le formulaire une fois envoyé
-    // formater les dates
+    // formater les dates - ok
   }
 
   return (

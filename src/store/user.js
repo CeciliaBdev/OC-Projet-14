@@ -1,10 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  identityEmployee: {
-    firstname: '',
-    lastname: '',
-  },
+  employeesKnown: [
+    {
+      // id: 1,
+      firstname: 'ceciliaTest ',
+      lastname: 'bernardTest',
+      startdate: '11/24/2022',
+      department: 'Marketing',
+      birthdate: '21/05/1989',
+      street: 'st roch',
+      city: 'Eyguieres',
+      state: 'Alabam',
+      zipcode: '150',
+    },
+  ],
 }
 
 const userSlice = createSlice({
@@ -12,12 +22,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addEmployee(state, action) {
-      state.firstname = action.payload.firstname
-      state.lastname = action.payload.lastname
+      state.employeesKnown.push(action.payload)
     },
   },
 })
-
 export const { addEmployee } = userSlice.actions
 
 export default userSlice.reducer

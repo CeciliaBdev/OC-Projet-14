@@ -1,5 +1,7 @@
 import React from 'react'
 import DataTable from 'react-data-table-component'
+import { useSelector } from 'react-redux'
+import { user } from '../store/user'
 
 function List() {
   //colonnes du tableau
@@ -43,28 +45,35 @@ function List() {
   ]
 
   // données sur les lignes
-  // test données mockées
-  const data = [
-    {
-      id: 1,
-      firstname: 'ceciliaTest ',
-      lastname: 'bernardTest',
-      startdate: '11/24/2022',
-      department: 'Marketing',
-      birthdate: '21/0/1989',
-      street: 'st roch',
-      city: 'Eyguieres',
-      state: 'Alabam',
-      zipcode: '150',
-    },
-  ]
+  // test données mockées - ok
+  // const data = [
+  //   {
+  //     id: 1,
+  //     firstname: 'ceciliaTest ',
+  //     lastname: 'bernardTest',
+  //     startdate: '11/24/2022',
+  //     department: 'Marketing',
+  //     birthdate: '21/05/1989',
+  //     street: 'st roch',
+  //     city: 'Eyguieres',
+  //     state: 'Alabam',
+  //     zipcode: '150',
+  //   },
+  // ]
 
   //stylisation tableau
   const customStyles = {}
 
+  //selection user dans le reducer
+  const userCreated = useSelector((state) => state.user.employeesKnown)
+
   return (
     <div>
-      <DataTable columns={columns} data={data} customStyles={customStyles} />
+      <DataTable
+        columns={columns}
+        data={userCreated}
+        customStyles={customStyles}
+      />
     </div>
   )
 }
