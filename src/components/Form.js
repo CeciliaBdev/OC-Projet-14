@@ -4,6 +4,7 @@ import { Modal } from '@ceciliabdev/react-modal'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
+import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import { addEmployee } from '../store/user'
 
@@ -38,8 +39,8 @@ function FormHRnet() {
     const identityEmployee = {
       firstname,
       lastname,
-      dateOfBirth,
-      dateOfStart,
+      dateOfBirth: format(dateOfBirth, 'dd-MM-yyyy'),
+      dateOfStart: format(dateOfStart, 'dd-MM-yyyy'),
       street,
       city,
       state: state.value,
@@ -81,6 +82,7 @@ function FormHRnet() {
             selected={dateOfBirth}
             onChange={(date) => setDateOfBirth(date)}
             className="border border-solid"
+            dateFormat="dd-MM-yyyy"
           />
         </div>
         <div className="flex ">
@@ -89,6 +91,7 @@ function FormHRnet() {
             selected={dateOfStart}
             onChange={(date) => setDateOfStart(date)}
             className="border border-solid"
+            dateFormat="dd-MM-yyyy"
           />
         </div>
         <div>
