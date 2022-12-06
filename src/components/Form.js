@@ -4,6 +4,8 @@ import { Modal } from '@ceciliabdev/react-modal'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
+import { useDispatch } from 'react-redux'
+import { addEmployee } from '../store/user'
 
 import { optionStates, optionDepartment } from '../Datas/datas'
 
@@ -12,6 +14,9 @@ import * as Yup from 'yup'
 function FormHRnet() {
   const [openModal, setOpenModal] = useState(false)
   const message = `L' employé a bien été créé`
+
+  //redux
+  const dispatch = useDispatch()
 
   //constantes formulaires
   const [firstname, setFirstname] = useState('')
@@ -42,6 +47,7 @@ function FormHRnet() {
       department: department.value,
     }
     console.log(identityEmployee)
+    dispatch(addEmployee(identityEmployee))
 
     // A faire :
     // vider le formulaire une fois envoyé
