@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 import logo from '../assets/logo-HRNet.svg'
 // import { Modal } from '@ceciliabdev/react-modal'
 import Form from '../components/Form'
@@ -15,9 +14,7 @@ function CreateEmployee() {
         <img src={logo} alt="logo hrnet" className="w-24 mx-auto p-5" />
       </Link>
 
-      <div className="bg-white w-3/4 h-3/4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-5">
-        <h1 className="font-bold text-2xl m-12">Create employee</h1>
-
+      <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-5 rounded-lg">
         <Form />
 
         <div>
