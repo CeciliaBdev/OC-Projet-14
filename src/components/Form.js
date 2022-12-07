@@ -54,90 +54,90 @@ function FormHRnet() {
   }
 
   return (
-    <div className="bg-white p-5">
-      <form className="flex flex-col gap-5 w-96">
-        <div className="flex gap-5">
-          <label>FirstName</label>
-          <input
-            type="text"
-            className="border border-solid"
-            id="firstname"
-            onChange={(e) => setFirstname(e.target.value)}
-          />
-        </div>
-        <div className="flex gap-5">
-          <label>LastName</label>
-          <input
-            type="text"
-            className="border border-solid"
-            id="lastname"
-            onChange={(e) => setLastname(e.target.value)}
-          />
-        </div>
-        <div className="flex ">
-          <label className="w-44">Date of birth</label>
+    <div className="bg-white p-5 rounded-xl drop-shadow-2xl">
+      <form className="flex flex-col w-72 items-center">
+        <label>FirstName</label>
+        <input
+          type="text"
+          className="border border-solid w-44 py-1"
+          id="firstname"
+          onChange={(e) => setFirstname(e.target.value)}
+        />
+
+        <label>LastName</label>
+        <input
+          type="text"
+          className="border border-solid w-44 py-1"
+          id="lastname"
+          onChange={(e) => setLastname(e.target.value)}
+        />
+
+        <label className="">Date of birth</label>
+        <div className="flex">
           <DatePicker
             selected={dateOfBirth}
             onChange={(date) => setDateOfBirth(date)}
-            className="border border-solid"
+            className="border border-solid justify-items-center text-center py-1"
             dateFormat="dd-MM-yyyy"
           />
         </div>
-        <div className="flex ">
-          <label className="w-44">Start Date</label>
+
+        <label className="">Start Date</label>
+        <div className="flex">
           <DatePicker
             selected={dateOfStart}
             onChange={(date) => setDateOfStart(date)}
-            className="border border-solid"
+            className="border border-solid justify-items-center text-center py-1"
             dateFormat="dd-MM-yyyy"
           />
         </div>
-        <div>
-          <fieldset className="border border-state">
-            <legend>Adress</legend>
-            <div className="flex flex-col gap-5">
-              <div className="flex gap-5 ">
-                <label>Street</label>
-                <input
-                  type="text"
-                  className="border border-solid"
-                  id="street"
-                  onChange={(e) => setStreet(e.target.value)}
-                />
-              </div>
-              <div className="flex gap-5">
-                <label>City</label>
-                <input
-                  type="text"
-                  className="border border-solid"
-                  id="city"
-                  onChange={(e) => setCity(e.target.value)}
-                />
-              </div>
-              <div>
-                <label>State</label>
-                <Select options={optionStates} onChange={setState} />
-              </div>
-              <div className="flex gap-5">
-                <label>Zip Code</label>
-                <input
-                  type="number"
-                  className="border border-solid"
-                  id="city"
-                  onChange={(e) => setZipcode(e.target.value)}
-                />
-              </div>
-            </div>
-          </fieldset>
-          <div>
-            <label>Department</label>
-            <Select options={optionDepartment} onChange={setDepartment} />
+
+        <fieldset className="border border-state p-5">
+          <legend>Adress</legend>
+          <div className="flex flex-col items-center">
+            <label>Street</label>
+            <input
+              type="text"
+              className="border border-solid w-44 py-1"
+              id="street"
+              onChange={(e) => setStreet(e.target.value)}
+            />
+
+            <label>City</label>
+            <input
+              type="text"
+              className="border border-solid w-44 py-1"
+              id="city"
+              onChange={(e) => setCity(e.target.value)}
+            />
+
+            <label>State</label>
+            <Select
+              options={optionStates}
+              onChange={setState}
+              className="w-44"
+            />
+
+            <label>Zip Code</label>
+            <input
+              type="number"
+              className="border border-solid w-44 py-1"
+              id="city"
+              onChange={(e) => setZipcode(e.target.value)}
+            />
           </div>
-        </div>
+        </fieldset>
+
+        <label>Department</label>
+        <Select
+          options={optionDepartment}
+          onChange={setDepartment}
+          className="w-44"
+        />
 
         <button
           type="submit"
-          className="border border-solid"
+          className="border border-solid w-44 my-4 hover:bg-slate-100 rounded py-2"
           onClick={createEmployee}
         >
           Save
