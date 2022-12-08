@@ -1,7 +1,6 @@
 import React from 'react'
 import DataTable from 'react-data-table-component'
 import { useSelector } from 'react-redux'
-import { user } from '../store/user'
 
 function List() {
   //colonnes du tableau

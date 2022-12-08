@@ -7,6 +7,8 @@ import Select from 'react-select'
 import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import { addEmployee } from '../store/user'
+// import { yupResolver } from '@hookform/resolvers/yup'
+// import * as Yup from 'yup'
 
 import { optionStates, optionDepartment } from '../Datas/datas'
 
@@ -45,8 +47,6 @@ function FormHRnet() {
       zipcode,
       department: department.value,
     }
-
-    //submit data
     console.log(identityEmployee)
     dispatch(addEmployee(identityEmployee))
 
@@ -57,13 +57,20 @@ function FormHRnet() {
 
   return (
     <div className="bg-white p-5 rounded-xl drop-shadow-2xl">
-      <form className="flex flex-col w-72 items-center">
+      <form
+        onSubmit={createEmployee}
+        className="flex flex-col w-72 items-center"
+      >
         <label>FirstName</label>
         <input
           type="text"
           className="border border-solid w-44 py-1"
           id="firstname"
           onChange={(e) => setFirstname(e.target.value)}
+          name="firstname"
+          required
+          minLength={2}
+          maxLength={20}
         />
 
         <label>LastName</label>
@@ -72,6 +79,10 @@ function FormHRnet() {
           className="border border-solid w-44 py-1"
           id="lastname"
           onChange={(e) => setLastname(e.target.value)}
+          name="lastname"
+          required
+          minLength={2}
+          maxLength={20}
         />
 
         <label className="">Date of birth</label>
@@ -79,8 +90,9 @@ function FormHRnet() {
           <DatePicker
             selected={birthdate}
             onChange={(date) => setBirthdate(date)}
-            className="border border-solid justify-items-center text-center py-1"
+            className="border border-solid justify-items-center py-1"
             dateFormat="dd-MM-yyyy"
+            required
           />
         </div>
 
@@ -89,8 +101,9 @@ function FormHRnet() {
           <DatePicker
             selected={startdate}
             onChange={(date) => setStartdate(date)}
-            className="border border-solid justify-items-center text-center py-1"
+            className="border border-solid justify-items-center py-1"
             dateFormat="dd-MM-yyyy"
+            required
           />
         </div>
 
@@ -103,6 +116,9 @@ function FormHRnet() {
               className="border border-solid w-44 py-1"
               id="street"
               onChange={(e) => setStreet(e.target.value)}
+              required
+              minLength={2}
+              maxLength={30}
             />
 
             <label>City</label>
@@ -111,6 +127,9 @@ function FormHRnet() {
               className="border border-solid w-44 py-1"
               id="city"
               onChange={(e) => setCity(e.target.value)}
+              required
+              minLength={2}
+              maxLength={30}
             />
 
             <label>State</label>
@@ -126,6 +145,8 @@ function FormHRnet() {
               className="border border-solid w-44 py-1"
               id="city"
               onChange={(e) => setZipcode(e.target.value)}
+              required
+              min={0}
             />
           </div>
         </fieldset>
@@ -140,12 +161,10 @@ function FormHRnet() {
         <button
           type="submit"
           className="border border-solid w-44 my-4 hover:bg-slate-100 rounded py-2"
-          onClick={createEmployee}
         >
           Save
         </button>
       </form>
-
       {/* <button
         className="openModalBtn border border-solid px-5 py-2 rounded hover:bg-slate-100"
         onClick={() => {
