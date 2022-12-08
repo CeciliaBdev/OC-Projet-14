@@ -10,7 +10,7 @@ function Accueil() {
         alt="backgound"
         className="opacity-10 h-screen w-screen object-cover relative"
       /> */}
-      <div className="bg-white w-[40%] h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-5 rounded-xl drop-shadow-2xl">
+      <div className="bg-white w-[50%] h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-5 rounded-xl drop-shadow-2xl">
         <div className="grid grid-rows-3  items-center h-full content-center  ">
           <img src={logo} alt="logo hrnet" className="w-24 mx-auto" />
           <h1 className="text-center text-lime-700 font-bold text-2xl">
@@ -20,9 +20,8 @@ function Accueil() {
             <div className=" h-full w-full   flex justify-center items-center">
               <Link
                 to="/createEmployee"
-                className="border border-solid border-lime-700  rounded-full bg-white relative  px-5 py-4 overflow-hidden group  relative hover:bg-gradient-to-r hover:from-green-500 hover:to-lime-400 text-lime-700 hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300 w-44"
+                className="border border-solid border-lime-700  rounded-full bg-white  px-5 py-4   hover:ring-2 hover:ring-offset-2 hover:ring-lime-400 transition-all ease-out duration-300 w-44"
               >
-                <span className="absolute right-0 w-8 h-8 -mt-12 transition-all duration-1000 transform translate-x-12 bg-lime-400/20 opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
                 <span className="flex justify-center text-black">
                   Create employee
                 </span>
@@ -32,9 +31,8 @@ function Accueil() {
             <div className=" h-full w-full   flex justify-center items-center">
               <Link
                 to="/listEmployees"
-                className="border border-solid border-lime-700  rounded-full bg-white relative  px-5 py-4 overflow-hidden group  relative hover:bg-gradient-to-r hover:from-green-500 hover:to-lime-400 text-lime-700 hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300 w-44"
+                className="border border-solid border-lime-700  rounded-full bg-white  px-5 py-4   hover:ring-2 hover:ring-offset-2 hover:ring-lime-400 transition-all ease-out duration-300 w-44"
               >
-                <span className="absolute right-0 w-8 h-8 -mt-12 transition-all duration-1000 transform translate-x-12 bg-lime-400/20 opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
                 <span className=" flex justify-center text-black">
                   List employees
                 </span>

@@ -20,8 +20,8 @@ function FormHRnet() {
   //constantes formulaires
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
-  const [dateOfBirth, setDateOfBirth] = useState('')
-  const [dateOfStart, setDateOfStart] = useState('')
+  const [birthdate, setBirthdate] = useState('')
+  const [startdate, setStartdate] = useState('')
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
@@ -37,8 +37,8 @@ function FormHRnet() {
     const identityEmployee = {
       firstname,
       lastname,
-      dateOfBirth: format(dateOfBirth, 'dd-MM-yyyy'),
-      dateOfStart: format(dateOfStart, 'dd-MM-yyyy'),
+      birthdate: format(birthdate, 'dd-MM-yyyy'),
+      startdate: format(startdate, 'dd-MM-yyyy'),
       street,
       city,
       state: state.value,
@@ -75,8 +75,8 @@ function FormHRnet() {
         <label className="">Date of birth</label>
         <div className="flex">
           <DatePicker
-            selected={dateOfBirth}
-            onChange={(date) => setDateOfBirth(date)}
+            selected={birthdate}
+            onChange={(date) => setBirthdate(date)}
             className="border border-solid justify-items-center text-center py-1"
             dateFormat="dd-MM-yyyy"
           />
@@ -85,8 +85,8 @@ function FormHRnet() {
         <label className="">Start Date</label>
         <div className="flex">
           <DatePicker
-            selected={dateOfStart}
-            onChange={(date) => setDateOfStart(date)}
+            selected={startdate}
+            onChange={(date) => setStartdate(date)}
             className="border border-solid justify-items-center text-center py-1"
             dateFormat="dd-MM-yyyy"
           />

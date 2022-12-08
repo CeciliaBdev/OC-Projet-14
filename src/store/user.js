@@ -6,12 +6,12 @@ const initialState = {
       // id: 1,
       firstname: 'ceciliaTest ',
       lastname: 'bernardTest',
-      startdate: '11/24/2022',
+      startdate: '11-24-2022',
       department: 'Marketing',
-      birthdate: '21/05/1989',
+      birthdate: '21-05-1989',
       street: 'st roch',
       city: 'Eyguieres',
-      state: 'Alabam',
+      state: 'Alabama',
       zipcode: '150',
     },
   ],
@@ -22,6 +22,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addEmployee(state, action) {
+      // j'ajoute dans mon tableau les nouveaux employées
       state.employeesKnown.push(action.payload)
     },
   },
