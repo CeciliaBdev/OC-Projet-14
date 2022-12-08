@@ -45,6 +45,8 @@ function FormHRnet() {
       zipcode,
       department: department.value,
     }
+
+    //submit data
     console.log(identityEmployee)
     dispatch(addEmployee(identityEmployee))
 
