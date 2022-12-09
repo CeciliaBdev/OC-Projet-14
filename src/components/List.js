@@ -70,17 +70,27 @@ function List() {
   // ]
 
   //stylisation tableau
-  const customStyles = {}
+  // const customStyles = {}
 
   //selection user dans le reducer
   const userCreated = useSelector((state) => state.user.employeesKnown)
 
+  //input de recherche
+
   return (
-    <div>
+    <div className="w-full px-5">
+      <div className="flex justify-end my-5 ">
+        <label>Search</label>
+        <input type="text" className="border rounded-xl ml-4" />
+      </div>
+
       <DataTable
         columns={columns}
         data={userCreated}
-        customStyles={customStyles}
+        // customStyles={customStyles}
+        striped
+        highlightOnHover
+        pagination
       />
     </div>
   )
