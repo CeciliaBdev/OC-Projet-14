@@ -9,10 +9,12 @@ import { useDispatch } from 'react-redux'
 import { addEmployee } from '../store/user'
 
 import { optionStates, optionDepartment } from '../Datas/datas'
+import { validators } from '../Datas/validators'
 
 function FormHRnet() {
   const [openModal, setOpenModal] = useState(false)
-  const message = `L' employé a bien été créé`
+  //const message = `L' employé a bien été créé`
+  const [message, setMessage] = useState('')
 
   //redux
   const dispatch = useDispatch()
@@ -45,19 +47,33 @@ function FormHRnet() {
       department: department.value,
     }
 
-    dispatch(addEmployee(identityEmployee))
-    console.log(identityEmployee)
-    setFirstname('')
-    setLastname('')
-    setBirthdate('')
-    setStartdate('')
-    setStreet('')
-    setCity('')
-    setZipcode('')
-    form.current.reset()
+    if (
+      firstname !== '' &&
+      lastname !== '' &&
+      street !== '' &&
+      city !== '' &&
+      zipcode !== ''
+    ) {
+      dispatch(addEmployee(identityEmployee))
+      console.log(identityEmployee)
+      setFirstname('')
+      setLastname('')
+      setBirthdate('')
+      setStartdate('')
+      setStreet('')
+      setCity('')
+      setZipcode('')
+      form.current.reset()
+      setOpenModal(true)
+      setMessage(`L employé * ${firstname} ${lastname} *  a bien été créé`)
+    } else {
+      //console.log('formulaire incomplet')
+      setOpenModal(true)
+      setMessage('Formulaire incomplet')
+    }
 
     // A faire :
-    // vider le formulaire une fois envoyé
+    // vider le formulaire une fois envoyé - ok
     // formater les dates - ok
   }
 
@@ -155,24 +171,22 @@ function FormHRnet() {
           required
         />
 
-        <button
+        {/* <button
           type="submit"
           className="border border-solid w-44 my-4 hover:bg-slate-100 rounded py-2"
         >
           Save
-        </button>
-      </form>
-      {/* <button
-        className="openModalBtn border border-solid px-5 py-2 rounded hover:bg-slate-100"
-        onClick={() => {
-          setOpenModal(true)
-        }}
-        type="submit"
-      >
-        Save
-      </button>
+        </button> */}
 
-      {openModal && <Modal closeModal={setOpenModal} content={message} />} */}
+        <button
+          className="openModalBtn border border-solid px-5 py-2 rounded hover:bg-slate-100"
+          type="submit"
+        >
+          Save
+        </button>
+
+        {openModal && <Modal closeModal={setOpenModal} content={message} />}
+      </form>
     </div>
   )
 }
