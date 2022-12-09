@@ -1,150 +1,150 @@
 export const optionStates = [
   {
-    value: 'Alabama',
-    label: 'Albama',
+    value: 'AL',
+    label: 'Alabama',
   },
   {
-    value: 'Alaska',
+    value: 'AK',
     label: 'Alaska',
   },
   {
-    value: 'American Samoa',
+    value: 'AS',
     label: 'American Samoa',
   },
   {
-    value: 'Arizona',
+    value: 'AZ',
     label: 'Arizona',
   },
   {
-    value: 'Arkansas',
+    value: 'AR',
     label: 'Arkansas',
   },
   {
-    value: 'California',
+    value: 'CA',
     label: 'California',
   },
   {
-    value: 'Colorado',
+    value: 'CO',
     label: 'Colorado',
   },
   {
-    value: 'Connecticut',
+    value: 'CT',
     label: 'Connecticut',
   },
   {
-    value: 'Delaware',
+    value: 'DW',
     label: 'Delaware',
   },
   {
-    value: 'District Of Columbia',
+    value: 'DC',
     label: 'District Of Columbia',
   },
   {
-    value: 'Federated States Of Micronesia',
+    value: 'FM',
     label: 'Federated States Of Micronesia',
   },
   {
-    value: 'Florida',
+    value: 'FL',
     label: 'Florida',
   },
   {
-    value: 'Georgia',
+    value: 'GG',
     label: 'Georgia',
   },
   {
-    value: 'Guam',
+    value: 'GM',
     label: 'Guam',
   },
   {
-    value: 'Hawaï',
+    value: 'HW',
     label: 'Hawaï',
   },
   {
-    value: 'Idaho',
+    value: 'IH',
     label: 'Idaho',
   },
   {
-    value: 'Illinois',
+    value: 'IL',
     label: 'Illinois',
   },
   {
-    value: 'Indiana',
+    value: 'ID',
     label: 'Indiana',
   },
   {
-    value: 'Iowa',
+    value: 'IW',
     label: 'Iowa',
   },
   {
-    value: 'Kansas',
+    value: 'KN',
     label: 'Kansas',
   },
   {
-    value: 'Kentucky',
+    value: 'KY',
     label: 'Kentucky',
   },
   {
-    value: 'Louisiana',
+    value: 'LS',
     label: 'Louisiana',
   },
   {
-    value: 'Maine',
+    value: 'MN',
     label: 'Maine',
   },
   {
-    value: 'Marshall Islands',
+    value: 'MI',
     label: 'Marshall Islands',
   },
   {
-    value: 'Maryland',
+    value: 'MR',
     label: 'Maryland',
   },
   {
-    value: 'Massachussetts',
+    value: 'MS',
     label: 'Massachussetts',
   },
   {
-    value: 'Michigan',
+    value: 'MG',
     label: 'Michigan',
   },
   {
-    value: 'Minnesota',
+    value: 'MT',
     label: 'Minesota',
   },
   {
-    value: 'Mississipi',
+    value: 'MP',
     label: 'Mississipi',
   },
   {
-    value: 'Missouri',
+    value: 'MO',
     label: 'Missouri',
   },
   {
-    value: 'Montana',
+    value: 'MTA',
     label: 'Montana',
   },
   {
-    value: 'Nebraska',
+    value: 'NB',
     label: 'Nebraska',
   },
   {
-    value: 'Nevada',
+    value: 'NV',
     label: 'Nevada',
   },
   {
-    value: 'New Hampshire',
+    value: 'NH',
     label: 'New Hampshire',
   },
   {
-    value: 'New Jersey',
+    value: 'NJ',
     label: 'New Jersey',
   },
   {
-    value: 'New Mexico',
+    value: 'NX',
     label: 'New Mexico',
   },
   {
-    value: 'New York',
+    value: 'NY',
     label: 'New York',
   },
 ]
