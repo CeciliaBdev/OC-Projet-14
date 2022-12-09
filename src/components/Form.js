@@ -5,11 +5,13 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
 import { format } from 'date-fns'
+import getYear from 'date-fns/getYear'
+import getMonth from 'date-fns/getMonth'
+import range from 'lodash.range'
 import { useDispatch } from 'react-redux'
 import { addEmployee } from '../store/user'
-
 import { optionStates, optionDepartment } from '../Datas/datas'
-import { validators } from '../Datas/validators'
+// import Datepicker_years from './Datepicker_years'
 
 function FormHRnet() {
   const [openModal, setOpenModal] = useState(false)
@@ -21,6 +23,23 @@ function FormHRnet() {
   //reference formulaire
   const form = useRef(null)
 
+  // // custom datepicker
+  const years = range(1950, getYear(new Date()) + 1, 1)
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
   //constantes formulaires
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
@@ -28,12 +47,12 @@ function FormHRnet() {
   const [startdate, setStartdate] = useState('')
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
-  const [state, setState] = useState('')
+  const [state, setState] = useState([])
   const [zipcode, setZipcode] = useState('')
   const [department, setDepartment] = useState('')
 
   //submite button
-  function createEmployee(e) {
+  const createEmployee = (e) => {
     e.preventDefault()
     const identityEmployee = {
       firstname,
@@ -46,13 +65,13 @@ function FormHRnet() {
       zipcode,
       department: department.value,
     }
+    const regexName = /^[A-zÀ-ú-]{2,}$/
+    const regexAdress = /^[A-Za-z0-9-\s]{2,}$/
 
     if (
-      firstname !== '' &&
-      lastname !== '' &&
-      street !== '' &&
-      city !== '' &&
-      zipcode !== ''
+      (regexName.test(firstname) && regexName.test(lastname)) === true &&
+      (regexAdress.test(city) && regexAdress.test(street)) === true &&
+      zipcode > 0
     ) {
       dispatch(addEmployee(identityEmployee))
       console.log(identityEmployee)
@@ -65,50 +84,118 @@ function FormHRnet() {
       setZipcode('')
       form.current.reset()
       setOpenModal(true)
-      setMessage(`L employé * ${firstname} ${lastname} *  a bien été créé`)
+      setMessage(`L employé *  ${firstname}-${lastname}  *  a bien été créé`)
     } else {
       //console.log('formulaire incomplet')
       setOpenModal(true)
-      setMessage('Formulaire incomplet')
+      setMessage(
+        'Formulaire incomplet, Veuillez remplir correctement les champs'
+      )
     }
-
-    // A faire :
-    // vider le formulaire une fois envoyé - ok
-    // formater les dates - ok
   }
 
   return (
     <div className="bg-white p-5 rounded-xl drop-shadow-2xl">
       <form
         onSubmit={createEmployee}
-        className="flex flex-col w-72 items-center"
+        className="flex flex-col w-72 items-center z-10"
         ref={form}
       >
         <label>FirstName</label>
         <input
           type="text"
-          className="border border-solid w-44 py-1"
+          className="border border-solid w-44 py-1 hover:bg-lime-100"
           id="firstname"
           onChange={(e) => setFirstname(e.target.value)}
-          name="firstname"
+          // {...register(
+          //   'firstname',
+          //   { required: true },
+          //   { pattern: /^[A-zÀ-ú-]{2,}$/ }
+          // )}
         />
+        {/* {errors.firstname && (
+          <span className="text-red-400">Firstname incorrect</span>
+        )} */}
 
         <label>LastName</label>
         <input
           type="text"
-          className="border border-solid w-44 py-1"
+          className="border border-solid w-44 py-1 hover:bg-lime-100"
           id="lastname"
           onChange={(e) => setLastname(e.target.value)}
-          name="lastname"
         />
 
         <label className="">Date of birth</label>
         <div className="flex">
-          <DatePicker
+          {/* <DatePicker
             selected={birthdate}
             onChange={(date) => setBirthdate(date)}
-            className="border border-solid justify-items-center py-1"
+            className="border border-solid justify-items-center py-1 hover:bg-lime-100"
             dateFormat="dd-MM-yyyy"
+            name="birthdate"
+            required
+          /> */}
+          {/* date picker choix années */}
+          <DatePicker
+            renderCustomHeader={({
+              date,
+              changeYear,
+              changeMonth,
+              decreaseMonth,
+              increaseMonth,
+              prevMonthButtonDisabled,
+              nextMonthButtonDisabled,
+            }) => (
+              <div
+                style={{
+                  margin: 10,
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <button
+                  onClick={decreaseMonth}
+                  disabled={prevMonthButtonDisabled}
+                >
+                  {'<'}
+                </button>
+                <select
+                  value={getYear(date)}
+                  onChange={({ target: { value } }) => changeYear(value)}
+                >
+                  {years.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  value={months[getMonth(date)]}
+                  onChange={({ target: { value } }) =>
+                    changeMonth(months.indexOf(value))
+                  }
+                >
+                  {months.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+
+                <button
+                  onClick={increaseMonth}
+                  disabled={nextMonthButtonDisabled}
+                >
+                  {'>'}
+                </button>
+              </div>
+            )}
+            selected={birthdate}
+            onChange={(date) => setBirthdate(date)}
+            className="border border-solid justify-items-center py-1 hover:bg-lime-100"
+            dateFormat="dd-MM-yyyy"
+            name="birthdate"
             required
           />
         </div>
@@ -118,7 +205,7 @@ function FormHRnet() {
           <DatePicker
             selected={startdate}
             onChange={(date) => setStartdate(date)}
-            className="border border-solid justify-items-center py-1"
+            className="border border-solid justify-items-center py-1 hover:bg-lime-100"
             dateFormat="dd-MM-yyyy"
             required
           />
@@ -130,7 +217,7 @@ function FormHRnet() {
             <label>Street</label>
             <input
               type="text"
-              className="border border-solid w-44 py-1"
+              className="border border-solid w-44 py-1 hover:bg-lime-100"
               id="street"
               onChange={(e) => setStreet(e.target.value)}
             />
@@ -138,7 +225,7 @@ function FormHRnet() {
             <label>City</label>
             <input
               type="text"
-              className="border border-solid w-44 py-1"
+              className="border border-solid w-44 py-1 hover:bg-lime-100"
               id="city"
               onChange={(e) => setCity(e.target.value)}
             />
@@ -147,14 +234,15 @@ function FormHRnet() {
             <Select
               options={optionStates}
               onChange={setState}
-              className="w-44"
+              className="w-44 "
               required
+              name="state"
             />
 
             <label>Zip Code</label>
             <input
               type="number"
-              className="border border-solid w-44 py-1"
+              className="border border-solid w-44 py-1 hover:bg-lime-100"
               id="city"
               onChange={(e) => setZipcode(parseInt(e.target.value))}
             />
@@ -165,21 +253,14 @@ function FormHRnet() {
         <Select
           options={optionDepartment}
           onChange={setDepartment}
-          className="w-44"
+          className="w-44 z-12"
           name="department"
           label={state}
           required
         />
 
-        {/* <button
-          type="submit"
-          className="border border-solid w-44 my-4 hover:bg-slate-100 rounded py-2"
-        >
-          Save
-        </button> */}
-
         <button
-          className="openModalBtn border border-solid px-5 py-2 rounded hover:bg-slate-100"
+          className="openModalBtn border border-solid px-5 py-2 my-4 rounded hover:bg-lime-600"
           type="submit"
         >
           Save

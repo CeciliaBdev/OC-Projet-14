@@ -6,7 +6,7 @@ const initialState = {
       // id: 1,
       firstname: 'ceciliaTest ',
       lastname: 'bernardTest',
-      startdate: '11-24-2022',
+      startdate: '24-11-2022',
       department: 'Marketing',
       birthdate: '21-05-1989',
       street: 'st roch',

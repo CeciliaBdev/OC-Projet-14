@@ -1,7 +1,7 @@
 export const optionStates = [
   {
     value: 'Alabama',
-    label: 'Alabama',
+    label: 'Albama',
   },
   {
     value: 'Alaska',
