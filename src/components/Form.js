@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Modal } from '@ceciliabdev/react-modal'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -7,8 +7,6 @@ import Select from 'react-select'
 import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import { addEmployee } from '../store/user'
-// import { yupResolver } from '@hookform/resolvers/yup'
-// import * as Yup from 'yup'
 
 import { optionStates, optionDepartment } from '../Datas/datas'
 
@@ -18,6 +16,8 @@ function FormHRnet() {
 
   //redux
   const dispatch = useDispatch()
+  //reference formulaire
+  const form = useRef(null)
 
   //constantes formulaires
   const [firstname, setFirstname] = useState('')
@@ -33,9 +33,6 @@ function FormHRnet() {
   //submite button
   function createEmployee(e) {
     e.preventDefault()
-    // console.log('firstname', firstname)
-    // console.log('lastname', lastname)
-
     const identityEmployee = {
       firstname,
       lastname,
@@ -47,8 +44,17 @@ function FormHRnet() {
       zipcode,
       department: department.value,
     }
-    console.log(identityEmployee)
+
     dispatch(addEmployee(identityEmployee))
+    console.log(identityEmployee)
+    setFirstname('')
+    setLastname('')
+    setBirthdate('')
+    setStartdate('')
+    setStreet('')
+    setCity('')
+    setZipcode('')
+    form.current.reset()
 
     // A faire :
     // vider le formulaire une fois envoyé
@@ -60,6 +66,7 @@ function FormHRnet() {
       <form
         onSubmit={createEmployee}
         className="flex flex-col w-72 items-center"
+        ref={form}
       >
         <label>FirstName</label>
         <input
@@ -68,9 +75,6 @@ function FormHRnet() {
           id="firstname"
           onChange={(e) => setFirstname(e.target.value)}
           name="firstname"
-          required
-          minLength={2}
-          maxLength={20}
         />
 
         <label>LastName</label>
@@ -80,9 +84,6 @@ function FormHRnet() {
           id="lastname"
           onChange={(e) => setLastname(e.target.value)}
           name="lastname"
-          required
-          minLength={2}
-          maxLength={20}
         />
 
         <label className="">Date of birth</label>
@@ -116,9 +117,6 @@ function FormHRnet() {
               className="border border-solid w-44 py-1"
               id="street"
               onChange={(e) => setStreet(e.target.value)}
-              required
-              minLength={2}
-              maxLength={30}
             />
 
             <label>City</label>
@@ -127,9 +125,6 @@ function FormHRnet() {
               className="border border-solid w-44 py-1"
               id="city"
               onChange={(e) => setCity(e.target.value)}
-              required
-              minLength={2}
-              maxLength={30}
             />
 
             <label>State</label>
@@ -137,6 +132,7 @@ function FormHRnet() {
               options={optionStates}
               onChange={setState}
               className="w-44"
+              required
             />
 
             <label>Zip Code</label>
@@ -144,9 +140,7 @@ function FormHRnet() {
               type="number"
               className="border border-solid w-44 py-1"
               id="city"
-              onChange={(e) => setZipcode(e.target.value)}
-              required
-              min={0}
+              onChange={(e) => setZipcode(parseInt(e.target.value))}
             />
           </div>
         </fieldset>
@@ -156,6 +150,9 @@ function FormHRnet() {
           options={optionDepartment}
           onChange={setDepartment}
           className="w-44"
+          name="department"
+          label={state}
+          required
         />
 
         <button
