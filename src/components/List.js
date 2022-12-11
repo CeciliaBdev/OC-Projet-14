@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DataTable from 'react-data-table-component'
 import { useSelector } from 'react-redux'
 
@@ -74,19 +74,43 @@ function List() {
 
   //selection user dans le reducer
   const userCreated = useSelector((state) => state.user.employeesKnown)
+  //console.log(userCreated)
 
-  //input de recherche
+  //SearchBar
+  const [search, setNewSearch] = useState('')
+
+  const searchItems = (e) => {
+    setNewSearch(e.target.value)
+  }
+  const filtered = !search
+    ? userCreated
+    : userCreated.filter(
+        (data) =>
+          data.firstname.toLowerCase().includes(search.toLowerCase()) ||
+          data.lastname.toLowerCase().includes(search.toLowerCase()) ||
+          data.startdate.toLowerCase().includes(search.toLowerCase()) ||
+          data.department.toLowerCase().includes(search.toLowerCase()) ||
+          data.birthdate.toLowerCase().includes(search.toLowerCase()) ||
+          data.street.toLowerCase().includes(search.toLowerCase()) ||
+          data.city.toLowerCase().includes(search.toLowerCase()) ||
+          data.state.toLowerCase().includes(search.toLowerCase()) ||
+          data.zipcode.toString().includes(search)
+      )
 
   return (
     <div className="w-full px-5">
       <div className="flex justify-end my-5 ">
         <label>Search</label>
-        <input type="text" className="border rounded-xl ml-4" />
+        <input
+          type="text"
+          className="border rounded-xl ml-4"
+          onChange={searchItems}
+        />
       </div>
 
       <DataTable
         columns={columns}
-        data={userCreated}
+        data={filtered}
         // customStyles={customStyles}
         striped
         highlightOnHover

@@ -61,6 +61,15 @@ function FormHRnet() {
       console.log(FormatData)
       //envoi dans la liste d'employés
       dispatch(addEmployee(FormatData))
+      //Logique localstorage pour persist redux
+      //1. je recupère ce qui est présent dans le local storage
+      //2; j'ajoute mon nouvel employé (FormatData)
+      //3. je récupère l'ensemble du localstorage
+
+      // let getLocalStorage = localStorage.getItem('employeesKnow')
+
+      // console.log('local', getLocalStorage)
+      // localStorage.setItem('getLocalStorage', JSON.stringify(getLocalStorage))
       //ouverture modal et message
       setOpenModal(true)
       setMessage(
