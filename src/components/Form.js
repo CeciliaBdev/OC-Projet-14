@@ -5,16 +5,10 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
 import { format } from 'date-fns'
-import locale from 'date-fns/locale/zh-CN'
-import moment from 'moment'
-import getYear from 'date-fns/getYear'
-import { getMonth } from 'date-fns'
-import range from 'lodash.range'
 import { useDispatch } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { addEmployee } from '../store/user'
 import { optionStates, optionDepartment } from '../Datas/datas'
-// import Datepicker_years from './Datepicker_years'
 
 function FormHRnet() {
   const [openModal, setOpenModal] = useState(false)
@@ -26,105 +20,63 @@ function FormHRnet() {
   //reference formulaire
   const form = useRef(null)
 
-  // // custom datepicker
-  const years = range(1950, getYear(new Date()) + 1, 1)
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
-
-  //constantes formulaires
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
-  const [birthdate, setBirthdate] = useState('')
-  const [startdate, setStartdate] = useState('')
-  const [street, setStreet] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState([])
-  const [zipcode, setZipcode] = useState('')
-  const [department, setDepartment] = useState('')
-
-  // test useForm
+  // use useForm
   const {
     register,
     handleSubmit,
+    reset,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm()
 
+  // rules controller - errors message
   const registerOptions = {
     department: { required: 'Department is required' },
-    state: { required: 'State id required' },
+    state: { required: 'State is required' },
     birthdate: { required: 'Birthdate incorrect' },
     startdate: { required: 'Stardate incorrect' },
   }
+
+  //format date datepicker
   const dateFormated = (date) => {
     return `${format(new Date(date), 'dd-MM-yyyy')}`
   }
+
   //submite button
   const createEmployee = (data) => {
-    const FormatData = {
-      firstname: data.firstname,
-      lastname: data.lastname,
-      birthdate: dateFormated(data.birthdate),
-      startdate: dateFormated(data.startdate),
-      street: data.street,
-      city: data.city,
-      state: data.state.value,
-      zipcode: data.zipcode,
-      department: data.department.value,
+    //pas d'erreurs
+    if (isValid) {
+      const FormatData = {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        birthdate: dateFormated(data.birthdate),
+        startdate: dateFormated(data.startdate),
+        street: data.street,
+        city: data.city,
+        state: data.state.value,
+        zipcode: parseInt(data.zipcode),
+        department: data.department.value,
+      }
+      //console.log(data)
+      console.log(FormatData)
+      //envoi dans la liste d'employés
+      dispatch(addEmployee(FormatData))
+      //ouverture modal et message
+      setOpenModal(true)
+      setMessage(
+        `L employé *  ${data.firstname}-${data.lastname}  *  a bien été créé  `
+      )
+      reset({
+        firstname: '',
+        lastname: '',
+        street: '',
+        city: '',
+        state: '',
+        zipcode: null,
+      })
+    } else {
+      console.log('formulaire incomplet')
     }
-    console.log(data)
-    console.log(FormatData)
-    dispatch(addEmployee(FormatData))
-    // e.preventDefault()
-    // const identityEmployee = {
-    //   firstname,
-    //   lastname,
-    //   birthdate: format(birthdate, 'dd-MM-yyyy'),
-    //   startdate: format(startdate, 'dd-MM-yyyy'),
-    //   street,
-    //   city,
-    //   state: state.value,
-    //   zipcode,
-    //   department: department.value,
-    // }
-    // const regexName = /^[A-zÀ-ú-]{2,}$/
-    // const regexAdress = /^[A-Za-z0-9-\s]{2,}$/
-    // if (
-    //   (regexName.test(firstname) && regexName.test(lastname)) === true &&
-    //   (regexAdress.test(city) && regexAdress.test(street)) === true &&
-    //   zipcode > 0
-    // ) {
-    //   dispatch(addEmployee(identityEmployee))
-    //   console.log(identityEmployee)
-    //   setFirstname('')
-    //   setLastname('')
-    //   setBirthdate('')
-    //   setStartdate('')
-    //   setStreet('')
-    //   setCity('')
-    //   setZipcode('')
-    //   form.current.reset()
-    //   setOpenModal(true)
-    //   setMessage(`L employé *  ${firstname}-${lastname}  *  a bien été créé`)
-    // } else {
-    //   //console.log('formulaire incomplet')
-    //   setOpenModal(true)
-    //   setMessage(
-    //     'Formulaire incomplet, Veuillez remplir correctement les champs'
-    //   )
-    // }
   }
 
   return (
@@ -139,7 +91,7 @@ function FormHRnet() {
           type="text"
           className="border border-solid w-44 py-1 hover:bg-lime-100"
           id="firstname"
-          onChange={(e) => setFirstname(e.target.value)}
+          // onChange={(e) => setFirstname(e.target.value)}
           {...register(
             'firstname',
             { required: true },
@@ -154,7 +106,7 @@ function FormHRnet() {
           type="text"
           className="border border-solid w-44 py-1 hover:bg-lime-100"
           id="lastname"
-          onChange={(e) => setLastname(e.target.value)}
+          // onChange={(e) => setLastname(e.target.value)}
           {...register(
             'lastname',
             { required: true },
@@ -223,7 +175,7 @@ function FormHRnet() {
               type="text"
               className="border border-solid w-44 py-1 hover:bg-lime-100"
               id="street"
-              onChange={(e) => setStreet(e.target.value)}
+              // onChange={(e) => setStreet(e.target.value)}
               {...register(
                 'street',
                 { required: true },
@@ -239,7 +191,7 @@ function FormHRnet() {
               type="text"
               className="border border-solid w-44 py-1 hover:bg-lime-100"
               id="city"
-              onChange={(e) => setCity(e.target.value)}
+              // onChange={(e) => setCity(e.target.value)}
               {...register(
                 'city',
                 { required: true },
@@ -281,7 +233,7 @@ function FormHRnet() {
               type="number"
               className="border border-solid w-44 py-1 hover:bg-lime-100"
               id="city"
-              onChange={(e) => setZipcode(parseInt(e.target.value))}
+              // onChange={(e) => setZipcode(parseInt(e.target.value))}
               {...register('zipcode', { required: true })}
             />
             {errors.zipcode && (
@@ -312,18 +264,20 @@ function FormHRnet() {
             />
           )}
         />
-        {errors.department && (
-          <span className="text-red-400 text-xs">Department incorrect</span>
-        )}
-        {/* <button
+
+        <span className="text-red-400 text-xs">
+          {errors.department && errors.department.message}
+        </span>
+
+        <button
           className="openModalBtn border border-solid px-5 py-2 my-4 rounded hover:bg-lime-600"
           type="submit"
         >
           Save
-        </button> */}
-        {/* {openModal && <Modal closeModal={setOpenModal} content={message} />} */}
+        </button>
+        {openModal && <Modal closeModal={setOpenModal} content={message} />}
 
-        <button type="submit">Submit</button>
+        {/* <button type="submit">Submit</button> */}
       </form>
     </div>
   )
