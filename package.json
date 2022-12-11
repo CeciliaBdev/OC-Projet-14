@@ -12,9 +12,6 @@
     "assert": "^2.0.0",
     "date-fns": "^2.29.3",
     "final-form": "^4.20.7",
-    "formik": "^2.2.9",
-    "lodash.range": "^3.2.0",
-    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-data-table-component": "^7.5.3",
     "react-datepicker": "^4.8.0",
@@ -28,10 +25,8 @@
     "react-select": "^5.7.0",
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.6",
-    "url": "^0.11.0",
     "util": "^0.12.5",
-    "web-vitals": "^2.1.4",
-    "yup": "^0.32.11"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
