@@ -41,6 +41,11 @@ function FormHRnet() {
   const dateFormated = (date) => {
     return `${format(new Date(date), 'dd-MM-yyyy')}`
   }
+  // const [localstore, setLocalStore] = useState(
+  //   localStorage.getItem('persist:user')
+  // )
+  // const ls = JSON.parse(localstore)
+  // console.log('local avant ajout employeé', ls)
 
   //submite button
   const createEmployee = (data) => {
@@ -61,15 +66,17 @@ function FormHRnet() {
       console.log(FormatData)
       //envoi dans la liste d'employés
       dispatch(addEmployee(FormatData))
+
       //Logique localstorage pour persist redux
-      //1. je recupère ce qui est présent dans le local storage
-      //2; j'ajoute mon nouvel employé (FormatData)
-      //3. je récupère l'ensemble du localstorage
+      //1. je recupère ce qui est présent le store
+      //2. j'ajoute mon nouvel employé (FormatData)
+      //3. au refresh conserve le localstorage
 
-      // let getLocalStorage = localStorage.getItem('employeesKnow')
-
-      // console.log('local', getLocalStorage)
-      // localStorage.setItem('getLocalStorage', JSON.stringify(getLocalStorage))
+      // employeesLocalStorage.push(FormatData)
+      localStorage.setItem(
+        'persist:user',
+        JSON.stringify('FormatData', FormatData)
+      )
       //ouverture modal et message
       setOpenModal(true)
       setMessage(
@@ -236,6 +243,8 @@ function FormHRnet() {
             {errors.state && (
               <span className="text-red-400 text-xs">State incorrect</span>
             )}
+            {/* <p>Test select npm </p>
+            <Selector List={optionStates} /> */}
 
             <label>Zip Code</label>
             <input

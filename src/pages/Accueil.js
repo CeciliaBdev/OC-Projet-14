@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/logo-HRNet.svg'
 
 function Accueil() {
+  const employeesLocalStorage = localStorage.getItem('persist:user')
+  console.log('local', employeesLocalStorage)
   return (
     <div className="bg-lime-400/20 h-screen w-screen">
       {/* <img
