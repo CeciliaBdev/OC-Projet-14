@@ -83,7 +83,7 @@ function FormHRnet() {
   }
 
   return (
-    <div className="bg-white p-5 rounded-xl drop-shadow-2xl">
+    <div className="bg-white py-1 px-5 rounded-xl drop-shadow-2xl">
       <form
         onSubmit={handleSubmit(createEmployee)}
         className="flex flex-col w-72 items-center z-10"
