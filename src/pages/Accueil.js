@@ -1,20 +1,20 @@
 import { Link } from 'react-router-dom'
-// import bg from '../assets/background.jpg'
-import logo from '../assets/logo-HRNet.svg'
+import logo from '../assets/logo-HRNet.png'
 
 function Accueil() {
   const employeesLocalStorage = localStorage.getItem('persist:user')
   console.log('local', employeesLocalStorage)
   return (
     <div className="bg-lime-400/20 h-screen w-screen">
-      {/* <img
-        src={bg}
-        alt="backgound"
-        className="opacity-10 h-screen w-screen object-cover relative"
-      /> */}
       <div className="bg-white w-[50%] h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-5 rounded-xl drop-shadow-2xl">
         <div className="grid grid-rows-3  items-center h-full content-center  ">
-          <img src={logo} alt="logo hrnet" className="w-24 mx-auto" />
+          <img
+            src={logo}
+            alt="logo hrnet"
+            className=" mx-auto"
+            width="100px"
+            height="100px"
+          />
           <h1 className="text-center text-lime-700 font-bold text-2xl">
             HRnet
           </h1>

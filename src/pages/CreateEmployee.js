@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/logo-HRNet.svg'
+import logo from '../assets/logo-HRNet.png'
 // import { Modal } from '@ceciliabdev/react-modal'
 import Form from '../components/Form'
 
@@ -21,7 +21,13 @@ function CreateEmployee() {
 
         <div className="my-2">
           <Link to="/" className="">
-            <img src={logo} alt="logo hrnet" className="w-12 mx-auto py-1" />
+            <img
+              src={logo}
+              alt="logo hrnet"
+              className=" mx-auto py-1 rounded-full"
+              width="60px"
+              height="60px"
+            />
           </Link>
         </div>
       </div>

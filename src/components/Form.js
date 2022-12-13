@@ -29,23 +29,10 @@ function FormHRnet() {
     formState: { errors, isValid },
   } = useForm()
 
-  // rules controller - errors message
-  const registerOptions = {
-    department: { required: 'Department is required' },
-    state: { required: 'State is required' },
-    birthdate: { required: 'Birthdate incorrect' },
-    startdate: { required: 'Stardate incorrect' },
-  }
-
   //format date datepicker
   const dateFormated = (date) => {
     return `${format(new Date(date), 'dd-MM-yyyy')}`
   }
-  // const [localstore, setLocalStore] = useState(
-  //   localStorage.getItem('persist:user')
-  // )
-  // const ls = JSON.parse(localstore)
-  // console.log('local avant ajout employeé', ls)
 
   //submite button
   const createEmployee = (data) => {
@@ -102,7 +89,7 @@ function FormHRnet() {
         className="flex flex-col w-72 items-center z-10"
         ref={form}
       >
-        <label>FirstName</label>
+        <label htmlFor="firstname">FirstName</label>
         <input
           type="text"
           className="border border-solid w-44 py-1 hover:bg-lime-100"
@@ -117,7 +104,7 @@ function FormHRnet() {
         {errors.firstname && (
           <span className="text-red-400 text-xs">Firstname incorrect</span>
         )}
-        <label>LastName</label>
+        <label htmlFor="lastname">LastName</label>
         <input
           type="text"
           className="border border-solid w-44 py-1 hover:bg-lime-100"
@@ -142,12 +129,12 @@ function FormHRnet() {
             required
           /> */}
 
-        <label className="">Birth Date</label>
+        <label htmlFor="birthdate">Birth Date</label>
         <div className="flex">
           <Controller
             control={control}
             name="birthdate"
-            rules={registerOptions.birthdate}
+            rules={{ required: 'Birthdate required' }}
             render={({ field: { onChange, value } }) => (
               <DatePicker
                 // selected={startdate}
@@ -155,20 +142,23 @@ function FormHRnet() {
                 selected={value}
                 onChange={onChange}
                 className="border border-solid justify-items-center py-1 hover:bg-lime-100"
+                dateFormat="dd-MM-yyyy"
+                id="birthdate"
               />
             )}
           />
         </div>
-        {errors.birthdate && (
-          <span className="text-red-400 text-xs">Birthdate incorrect </span>
-        )}
 
-        <label className="">Start Date</label>
+        <span className="text-red-400 text-xs">
+          {errors.birthdate && errors.birthdate.message}
+        </span>
+
+        <label htmlFor="startdate">Start Date</label>
         <div className="flex">
           <Controller
             control={control}
             name="startdate"
-            rules={registerOptions.startdate}
+            rules={{ required: 'StartDate required' }}
             render={({ field: { onChange, value } }) => (
               <DatePicker
                 // selected={startdate}
@@ -176,17 +166,19 @@ function FormHRnet() {
                 selected={value}
                 onChange={onChange}
                 className="border border-solid justify-items-center py-1 hover:bg-lime-100"
+                dateFormat="dd-MM-yyyy"
+                id="startdate"
               />
             )}
           />
         </div>
-        {errors.startdate && (
-          <span className="text-red-400 text-xs">Startdate incorrect </span>
-        )}
+        <span className="text-red-400 text-xs">
+          {errors.startdate && errors.startdate.message}
+        </span>
         <fieldset className="border border-state p-5">
           <legend>Adress</legend>
           <div className="flex flex-col items-center">
-            <label>Street</label>
+            <label htmlFor="street">Street</label>
             <input
               type="text"
               className="border border-solid w-44 py-1 hover:bg-lime-100"
@@ -202,7 +194,7 @@ function FormHRnet() {
               <span className="text-red-400 text-xs">Street incorrect</span>
             )}
 
-            <label>City</label>
+            <label htmlFor="city">City</label>
             <input
               type="text"
               className="border border-solid w-44 py-1 hover:bg-lime-100"
@@ -218,7 +210,7 @@ function FormHRnet() {
               <span className="text-red-400 text-xs">City incorrect</span>
             )}
 
-            <label>State</label>
+            <label htmlFor="state">State</label>
             {/* <Select
               options={optionStates}
               onChange={setState}
@@ -230,27 +222,28 @@ function FormHRnet() {
               name="state"
               control={control}
               defaultValue=""
-              rules={registerOptions.state}
+              rules={{ required: 'Select a state' }}
               render={({ field }) => (
                 <Select
                   options={optionStates}
                   {...field}
                   label="Text field"
                   className="w-44 z-12"
+                  inputId="state"
                 />
               )}
             />
-            {errors.state && (
-              <span className="text-red-400 text-xs">State incorrect</span>
-            )}
+            <span className="text-red-400 text-xs">
+              {errors.state && errors.state.message}
+            </span>
             {/* <p>Test select npm </p>
             <Selector List={optionStates} /> */}
 
-            <label>Zip Code</label>
+            <label htmlFor="zipcode">Zip Code</label>
             <input
               type="number"
               className="border border-solid w-44 py-1 hover:bg-lime-100"
-              id="city"
+              id="zipcode"
               // onChange={(e) => setZipcode(parseInt(e.target.value))}
               {...register('zipcode', { required: true })}
             />
@@ -259,30 +252,22 @@ function FormHRnet() {
             )}
           </div>
         </fieldset>
-        <label>Department</label>
-        {/* <Select
-          options={optionDepartment}
-          onChange={setDepartment}
-          className="w-44 z-12"
-          name="department"
-          label={state}
-          // required
-        /> */}
+        <label htmlFor="department">Department</label>
         <Controller
           name="department"
           control={control}
           defaultValue=""
-          rules={registerOptions.department}
+          rules={{ required: 'Select a department' }}
           render={({ field }) => (
             <Select
               options={optionDepartment}
               {...field}
               label="Text field"
               className="w-44 z-12"
+              inputId="department"
             />
           )}
         />
-
         <span className="text-red-400 text-xs">
           {errors.department && errors.department.message}
         </span>
