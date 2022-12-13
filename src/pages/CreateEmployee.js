@@ -25,8 +25,7 @@ function CreateEmployee() {
               src={logo}
               alt="logo hrnet"
               className=" mx-auto py-1 rounded-full"
-              width="60px"
-              height="60px"
+              sizes="20vw"
             />
           </Link>
         </div>
