@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@ceciliabdev/customselect": "^0.1.0",
-    "@ceciliabdev/react-modal": "^0.1.5",
+    "@ceciliabdev/react-modal": "^0.1.6",
     "@hookform/resolvers": "^2.9.10",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",

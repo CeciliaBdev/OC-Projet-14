@@ -6,7 +6,7 @@ function Accueil() {
   console.log('local', employeesLocalStorage)
   return (
     <div className="bg-lime-400/20 h-screen w-screen">
-      <div className="bg-white w-[50%] h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-16 sm:py-5 rounded-xl drop-shadow-2xl">
+      <div className="bg-white w-[60%] h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-16 sm:py-5 rounded-xl drop-shadow-2xl">
         <div className="grid grid-rows-3  items-center h-full content-center  ">
           <img
             src={logo}

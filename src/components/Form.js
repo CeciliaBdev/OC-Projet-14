@@ -67,7 +67,7 @@ function FormHRnet() {
       //ouverture modal et message
       setOpenModal(true)
       setMessage(
-        `L employé *  ${data.firstname}-${data.lastname}  *  a bien été créé  `
+        `Employee  ${data.firstname} ${data.lastname}  has been created `
       )
       reset({
         firstname: '',
@@ -109,7 +109,6 @@ function FormHRnet() {
           type="text"
           className="border border-solid w-44 py-1 hover:bg-lime-100"
           id="lastname"
-          // onChange={(e) => setLastname(e.target.value)}
           {...register(
             'lastname',
             { required: true },
@@ -161,8 +160,6 @@ function FormHRnet() {
             rules={{ required: 'StartDate required' }}
             render={({ field: { onChange, value } }) => (
               <DatePicker
-                // selected={startdate}
-                // onChange={(date) => setStartdate(date)}
                 selected={value}
                 onChange={onChange}
                 className="border border-solid justify-items-center py-1 hover:bg-lime-100"
@@ -183,7 +180,6 @@ function FormHRnet() {
               type="text"
               className="border border-solid w-44 py-1 hover:bg-lime-100"
               id="street"
-              // onChange={(e) => setStreet(e.target.value)}
               {...register(
                 'street',
                 { required: true },
@@ -199,7 +195,6 @@ function FormHRnet() {
               type="text"
               className="border border-solid w-44 py-1 hover:bg-lime-100"
               id="city"
-              // onChange={(e) => setCity(e.target.value)}
               {...register(
                 'city',
                 { required: true },
@@ -279,8 +274,6 @@ function FormHRnet() {
           Save
         </button>
         {openModal && <Modal closeModal={setOpenModal} content={message} />}
-
-        {/* <button type="submit">Submit</button> */}
       </form>
     </div>
   )

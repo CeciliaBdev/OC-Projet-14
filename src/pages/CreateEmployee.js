@@ -1,13 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import logo from '../assets/logo-HRNet.png'
-// import { Modal } from '@ceciliabdev/react-modal'
 import Form from '../components/Form'
 
 function CreateEmployee() {
-  // const [openModal, setOpenModal] = useState(false)
-  // const message = 'Contenu de la modale'
-
   return (
     <div className="bg-lime-400/20 h-screen w-screen ">
       <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-5 rounded-lg">
