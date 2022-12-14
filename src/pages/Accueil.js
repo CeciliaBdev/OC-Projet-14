@@ -6,7 +6,7 @@ function Accueil() {
   console.log('local', employeesLocalStorage)
   return (
     <div className="bg-lime-400/20 h-screen w-screen">
-      <div className="bg-white w-[50%] h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-5 rounded-xl drop-shadow-2xl">
+      <div className="bg-white w-[50%] h-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-16 sm:py-5 rounded-xl drop-shadow-2xl">
         <div className="grid grid-rows-3  items-center h-full content-center  ">
           <img
             src={logo}
@@ -15,10 +15,10 @@ function Accueil() {
             width="100px"
             height="100px"
           />
-          <h1 className="text-center text-lime-700 font-bold text-2xl">
+          <h1 className="text-center text-lime-700 font-bold text-3xl">
             HRnet
           </h1>
-          <div className="grid grid-cols-2  h-12 ">
+          <div className="grid grid-cols-1 gap-2 h-12 sm:grid-cols-2  ">
             <div className=" h-full w-full   flex justify-center items-center">
               <Link
                 to="/createEmployee"

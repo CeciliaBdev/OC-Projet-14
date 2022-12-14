@@ -273,7 +273,7 @@ function FormHRnet() {
         </span>
 
         <button
-          className="openModalBtn border border-solid px-5 py-2 my-4 rounded hover:bg-lime-600"
+          className="openModalBtn border border-solid px-5 py-2 my-4 rounded hover:bg-lime-400/20"
           type="submit"
         >
           Save
