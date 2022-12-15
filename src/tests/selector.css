@@ -1,0 +1,51 @@
+.container_select {
+  width: 180px;
+  height: fit-content;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+}
+.container_select_click {
+  width: 100%;
+  padding: 1px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.overflow {
+  margin-top: 5px;
+  overflow-y: auto;
+}
+.dropped {
+  max-height: 240px;
+}
+.not_dropped {
+  max-height: 0;
+}
+.rotate {
+  transform: rotate(180deg);
+}
+.search {
+  position: sticky;
+  top: 0;
+}
+.input_search {
+  outline: none;
+  border: 1px solid grey;
+  padding: 5px;
+}
+.list_state {
+  padding: 5px;
+}
+.list_state:hover,
+.list_state_select {
+  background-color: rgb(69, 112, 177);
+  color: white;
+}
+.appear {
+  display: block;
+}
+.hidden {
+  display: none;
+}

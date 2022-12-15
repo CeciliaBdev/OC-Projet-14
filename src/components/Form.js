@@ -14,7 +14,6 @@ function FormHRnet() {
   const [openModal, setOpenModal] = useState(false)
   //const message = `L' employé a bien été créé`
   const [message, setMessage] = useState('')
-
   //redux
   const dispatch = useDispatch()
   //reference formulaire
@@ -26,6 +25,7 @@ function FormHRnet() {
     handleSubmit,
     reset,
     control,
+    defaultValues,
     formState: { errors, isValid },
   } = useForm()
 
@@ -49,7 +49,7 @@ function FormHRnet() {
         zipcode: parseInt(data.zipcode),
         department: data.department.value,
       }
-      //console.log(data)
+      console.log(data)
       console.log(FormatData)
       //envoi dans la liste d'employés
       dispatch(addEmployee(FormatData))
@@ -59,12 +59,12 @@ function FormHRnet() {
       //2. j'ajoute mon nouvel employé (FormatData)
       //3. au refresh conserve le localstorage
 
-      // employeesLocalStorage.push(FormatData)
+      //employeesLocalStorage.push(FormatData)
       localStorage.setItem(
         'persist:user',
         JSON.stringify('FormatData', FormatData)
       )
-      //ouverture modal et message
+      // //ouverture modal et message
       setOpenModal(true)
       setMessage(
         `Employee  ${data.firstname} ${data.lastname}  has been created `
@@ -189,7 +189,6 @@ function FormHRnet() {
             {errors.street && (
               <span className="text-red-400 text-xs">Street incorrect</span>
             )}
-
             <label htmlFor="city">City</label>
             <input
               type="text"
@@ -204,7 +203,6 @@ function FormHRnet() {
             {errors.city && (
               <span className="text-red-400 text-xs">City incorrect</span>
             )}
-
             <label htmlFor="state">State</label>
             {/* <Select
               options={optionStates}
@@ -231,8 +229,6 @@ function FormHRnet() {
             <span className="text-red-400 text-xs">
               {errors.state && errors.state.message}
             </span>
-            {/* <p>Test select npm </p>
-            <Selector List={optionStates} /> */}
 
             <label htmlFor="zipcode">Zip Code</label>
             <input
