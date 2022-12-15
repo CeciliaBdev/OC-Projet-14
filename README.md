@@ -9,3 +9,5 @@ Passez une librairie jQuery vers React
 2. Install the depencencies: `npm install`
 
 3. Launch the project: `npm start`
+
+4. For use my npm package, install : ` npm i @ceciliabdev/react-modal`
